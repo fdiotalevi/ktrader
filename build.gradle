@@ -1,0 +1,51 @@
+buildscript {
+    ext.kotlinVersion = '1.1.51'
+    ext.feignVersion = '9.5.1'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+        classpath("org.junit.platform:junit-platform-gradle-plugin:1.0.0")
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+
+jar {
+    baseName = 'trader'
+    version = '0.0.1'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://dl.bintray.com/jetbrains/spek" }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
+    compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+    compile("io.github.openfeign:feign-core:$feignVersion")
+    compile("io.github.openfeign:feign-gson:$feignVersion")
+
+    testCompile("junit:junit")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.jetbrains.spek:spek-api:1.1.5")
+    testCompile("org.junit.platform:junit-platform-runner:1.0.0")
+
+    testRuntime("org.junit.vintage:junit-vintage-engine:4.12.1")
+    testRuntime("org.jetbrains.spek:spek-junit-platform-engine:1.1.5")
+}
