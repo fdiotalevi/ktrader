@@ -21,4 +21,9 @@ class OHLC(
         val close: BigDecimal,
         val volume: Long,
         val time: Date,
-        val duration: Duration)
+        val duration: Duration) {
+
+    val fullRange : BigDecimal get() = high - low
+    val gain : BigDecimal get() = close - open
+
+}

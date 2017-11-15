@@ -1,6 +1,7 @@
 buildscript {
     ext.kotlinVersion = '1.1.51'
     ext.feignVersion = '9.5.1'
+    ext.nettyVersion = '4.1.17.Final'
 
     repositories {
         mavenCentral()
@@ -40,6 +41,13 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
     compile("io.github.openfeign:feign-core:$feignVersion")
     compile("io.github.openfeign:feign-gson:$feignVersion")
+    compile("org.litote.kmongo:kmongo:3.5.0")
+    compile("org.mongodb:mongodb-driver:3.5.0")
+//    compile("info.bitrich.xchange-stream:xchange-stream-core:4.2.3")
+//    compile("info.bitrich.xchange-stream:xchange-poloniex:4.2.3")
+//    compile("io.netty:netty-handler:$nettyVersion")
+//    compile("io.netty:netty-codec-http:$nettyVersion")
+    compile("org.eclipse.jetty.websocket:websocket-client:9.4.7.v20170914")
 
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
