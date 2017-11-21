@@ -1,5 +1,6 @@
 package com.knokode.trader.examples
 
+import com.knokode.trader.Screener
 import com.knokode.trader.TimeSeries
 import com.knokode.trader.indicators.decimals
 import com.knokode.trader.indicators.lastPrice
@@ -12,7 +13,7 @@ import java.math.BigDecimal
 fun dollarRunner(timeSeries: TimeSeries) = (lastPrice(timeSeries) < BigDecimal(15)) &&
         (timeSeries.candles.count { candle -> candle.fullRange > BigDecimal(1) } > 5 )
 
-
+@Screener("Shares under 15 dollars - low position in range 30 days - decimal < 20")
 fun readyToShoot(timeSeries: TimeSeries) = dollarRunner(timeSeries) &&
         (decimals(lastPrice(timeSeries)) < BigDecimal(20)) &&
         hasPositionInRange(30, "0", "20")(timeSeries)

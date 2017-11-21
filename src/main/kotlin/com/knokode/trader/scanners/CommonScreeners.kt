@@ -27,3 +27,16 @@ fun hasPositionInRange(rangeSize: Int, low: BigDecimal, high: BigDecimal) : (Tim
 
     return ::returned
 }
+
+fun averageVolumeIn(rangeSize: Int, low: String, high: String) = averageVolumeIn(rangeSize, BigDecimal(low), BigDecimal(high))
+fun averageVolumeIn(rangeSize: Int, low: BigDecimal, high: BigDecimal) : (TimeSeries) -> Boolean {
+
+    fun returned(timeSeries: TimeSeries) : Boolean {
+        val startRange = timeSeries.size - rangeSize
+        val totalVolume = (startRange..(timeSeries.size - 1)).map { timeSeries(it).volume }.sum()
+        val average = BigDecimal(totalVolume) / BigDecimal(rangeSize)
+        return average in low..high
+    }
+
+    return ::returned
+}
